@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraping Example</title>
+</head>
+<body>
+    <div id="textContainer"></div>
+    <!-- Уберите строку <script src="script.js"></script> -->
+    <script>
+        // Вставьте код напрямую здесь, так как вы убрали подключение script.js
+        const SentimentData = async () => {
+            const browser = await puppeteer.launch();
+            const page = await browser.newPage();
+            await page.goto("https://yobit.net/ru/");
+            const text = await page.$eval("*", (el) => el.innerText);
+
+            const textContainer = document.getElementById('textContainer');
+            textContainer.textContent = text;
+
+            await browser.close();
+        };
+
+        // Вызовите функцию после загрузки DOM-дерева
+        SentimentData();
+    </script>
+</body>
+</html>
